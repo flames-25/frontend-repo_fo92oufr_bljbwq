@@ -1,6 +1,6 @@
 import React from 'react'
 import Spline from '@splinetool/react-spline'
-import { ArrowRight, Sparkles, CheckCircle2, BarChart3, Layers, Users, FileSpreadsheet, Settings2, Download, UploadCloud, Building2, Briefcase, Megaphone, Globe, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Sparkles, CheckCircle2, BarChart3, Layers, Users, FileSpreadsheet, Settings2, Download, UploadCloud, Building2, Briefcase, Megaphone, Globe, ShieldCheck, Star } from 'lucide-react'
 
 const Container = ({ children, className = '' }) => (
   <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
@@ -216,106 +216,151 @@ export default function App() {
         </Container>
       </section>
 
-      {/* Who it's for */}
+      {/* Who it's for - updated to 4 blocks */}
       <section id="who" className="py-20">
         <Container>
           <SectionTitle
             eyebrow="Who it’s for"
             title="Built for agencies and brand leaders"
+            subtitle="Purpose-built blocks for the people who own reporting outcomes."
           />
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Building2, label: 'Agencies' },
-              { icon: Briefcase, label: 'Strategists' },
-              { icon: Megaphone, label: 'Brand teams' },
-              { icon: Globe, label: 'CMOs' },
-            ].map(({ icon: Icon, label }) => (
-              <span key={label} className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-700">
-                <Icon className="h-4 w-4 text-emerald-700" /> {label}
-              </span>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Integrations */}
-      <section id="integrations" className="py-20 bg-gray-50">
-        <Container>
-          <SectionTitle eyebrow="Integrations" title="Plug in your channels and data" />
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-            {[
-              { label: 'Instagram' },
-              { label: 'TikTok' },
-              { label: 'Facebook' },
-              { label: 'YouTube' },
-              { label: 'LinkedIn' },
-              { label: 'X/Twitter' },
-              { label: 'CSV' },
-              { label: 'Google Sheets' },
-            ].map(({ label }) => (
-              <div key={label} className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-center text-sm text-gray-700">
-                {label}
+              { icon: Building2, title: 'Agencies', desc: 'Standardize reporting across clients with white‑label exports.' },
+              { icon: Briefcase, title: 'Strategists', desc: 'Turn insights into ready-to-send recommendations.' },
+              { icon: Megaphone, title: 'Brand Teams', desc: 'Keep stakeholders aligned with consistent, clear reports.' },
+              { icon: Globe, title: 'CMOs', desc: 'See what matters, fast — outcomes, trends, and next steps.' },
+            ].map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <div className="h-10 w-10 rounded-xl bg-emerald-600/10 grid place-items-center">
+                  <Icon className="h-5 w-5 text-emerald-700" />
+                </div>
+                <h3 className="mt-4 font-semibold text-gray-900">{title}</h3>
+                <p className="mt-1 text-gray-600">{desc}</p>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Testimonials */}
+      {/* Integrations with flat icons */}
+      <section id="integrations" className="py-20 bg-gray-50">
+        <Container>
+          <SectionTitle eyebrow="Integrations" title="Plug in your channels and data" />
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+            {[
+              { label: 'Instagram', icon: IGIcon },
+              { label: 'TikTok', icon: TikTokIcon },
+              { label: 'Facebook', icon: FBIcon },
+              { label: 'YouTube', icon: YTIcon },
+              { label: 'LinkedIn', icon: INIcon },
+              { label: 'X/Twitter', icon: XIcon },
+              { label: 'CSV', icon: CSVIcon },
+              { label: 'Google Sheets', icon: SheetsIcon },
+            ].map(({ label, icon: Icon }) => (
+              <div key={label} className="rounded-xl border border-gray-200 bg-white px-4 py-3 flex items-center gap-2">
+                <div className="h-6 w-6 text-gray-800"><Icon /></div>
+                <span className="text-sm text-gray-700">{label}</span>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Testimonials bigger cards with names */}
       <section id="testimonials" className="py-20">
         <Container>
           <SectionTitle eyebrow="What agencies say" title="Proof from the field" />
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {[
-              '“Cut reporting time from 3 days to 1 hour.”',
-              '“Clients love the clarity.”',
-              '“A game changer for agencies.”',
-            ].map((quote) => (
-              <div key={quote} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                <p className="text-gray-800">{quote}</p>
+              { quote: '“Cut reporting time from 3 days to 1 hour.”', name: 'Ava Patel', company: 'Northstar Digital' },
+              { quote: '“Clients love the clarity.”', name: 'Liam Chen', company: 'BrightWave Agency' },
+              { quote: '“A game changer for agencies.”', name: 'Sophia García', company: 'Arc & Arrow' },
+            ].map(({ quote, name, company }) => (
+              <div key={quote} className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+                <p className="text-lg leading-relaxed text-gray-900">{quote}</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-emerald-600/10 grid place-items-center text-emerald-700 font-semibold">
+                    {name.split(' ').map(n=>n[0]).slice(0,2).join('')}
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-medium text-gray-900">{name}</div>
+                    <div className="text-gray-600">{company}</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Pricing preview */}
+      {/* Pricing preview updated */}
       <section id="pricing" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <Container>
           <SectionTitle eyebrow="Pricing" title="Simple plans for every stage" />
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                name: 'Per Brand',
-                desc: 'Pay only for the brands you manage. Everything you need to automate reporting.',
+                name: 'Starter',
+                desc: 'For solo operators and early teams getting started.',
+                features: ['Reporting automation','Template library','Basic exports'],
+                cta: 'Start Free',
               },
               {
-                name: 'Agency',
-                desc: 'Volume pricing and workspace controls for growing teams.',
+                name: 'Pro',
+                desc: 'For growing teams that want AI and advanced exports.',
+                features: ['AI insights','Advanced templates','White‑label exports'],
+                cta: 'Start Pro',
                 featured: true,
+                badge: 'Popular',
+              },
+              {
+                name: 'Multi‑Brand',
+                desc: 'For agencies managing multiple brands and workspaces.',
+                features: ['Multi‑brand workspace','Roles & permissions','Priority support'],
+                cta: 'Talk to Sales',
               },
               {
                 name: 'Enterprise',
-                desc: 'Advanced security, SSO, and custom onboarding.',
+                desc: 'For security, compliance, and custom workflows.',
+                features: ['SSO/SAML','Custom onboarding','Security reviews'],
+                cta: 'Contact Us',
               },
-            ].map(({ name, desc, featured }) => (
+            ].map(({ name, desc, features, cta, featured, badge }) => (
               <div
                 key={name}
-                className={`rounded-2xl border ${featured ? 'border-emerald-200 ring-2 ring-emerald-100' : 'border-gray-200'} bg-white p-6 shadow-sm flex flex-col`}
+                className={`relative rounded-2xl border ${featured ? 'border-emerald-200 ring-2 ring-emerald-100' : 'border-gray-200'} bg-white p-6 shadow-sm flex flex-col`}
               >
+                {badge && (
+                  <span className="absolute -top-3 left-4 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2 py-1 text-xs font-medium text-white">
+                    <Star className="h-3 w-3" /> {badge}
+                  </span>
+                )}
                 <h3 className="text-lg font-semibold">{name}</h3>
                 <p className="mt-2 text-sm text-gray-600 flex-1">{desc}</p>
                 <ul className="mt-4 space-y-2 text-sm text-gray-700">
-                  {['Reporting automation','Template library','AI insights','White-label exports'].map((f) => (
+                  {features.map((f) => (
                     <li key={f} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-600" /> {f}</li>
                   ))}
                 </ul>
                 <div className="mt-6 flex gap-3">
-                  <PrimaryButton>Start Free</PrimaryButton>
-                  <SecondaryButton>Talk to Sales</SecondaryButton>
+                  <PrimaryButton>{cta}</PrimaryButton>
+                  <SecondaryButton>Book Demo</SecondaryButton>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Additional CTA for multi-brand agencies */}
+          <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h4 className="text-lg font-semibold text-emerald-900">Managing multiple brands?</h4>
+              <p className="text-emerald-900/80">Get tailored pricing and onboarding for agencies running multi‑brand workflows.</p>
+            </div>
+            <a href="#contact" className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-3 text-white font-semibold shadow-sm hover:bg-emerald-700 transition-colors">
+              Talk to our team
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
           </div>
         </Container>
       </section>
@@ -364,6 +409,76 @@ function ClockIcon(props) {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" {...props}>
       <circle cx="12" cy="12" r="10" />
       <polyline points="12 6 12 12 16 14" />
+    </svg>
+  )
+}
+
+// Flat brand-ish icons (minimal, not official logos)
+function IGIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="#E1306C"/>
+      <rect x="7.5" y="7.5" width="9" height="9" rx="4.5" fill="white"/>
+      <circle cx="17" cy="7" r="1.3" fill="white"/>
+    </svg>
+  )
+}
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#000"/>
+      <path d="M14 6c1.2 1.9 2.5 2.7 4 3v2.2c-1.7-.1-3-.7-4-1.5v4.3c0 2.5-2 4.5-4.5 4.5S5 16.5 5 14s2-4.5 4.5-4.5c.5 0 1 .1 1.5.3v2.3c-.4-.2-.9-.3-1.5-.3C7.9 11.8 7 12.8 7 14c0 1.2 1 2.2 2.2 2.2s2.3-1 2.3-2.2V6h2.5z" fill="#fff"/>
+    </svg>
+  )
+}
+function FBIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#1877F2"/>
+      <path d="M13.5 8H15V5h-2c-2 0-3.5 1.6-3.5 3.5V11H7v3h2.5v5H13v-5h2.2l.3-3H13v-1.3c0-.4.3-.7.7-.7h-.2z" fill="#fff"/>
+    </svg>
+  )
+}
+function YTIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#FF0000"/>
+      <polygon points="10,8 16,12 10,16" fill="#fff"/>
+    </svg>
+  )
+}
+function INIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+      <rect x="5" y="9" width="3" height="10" fill="#fff"/>
+      <circle cx="6.5" cy="6.5" r="1.5" fill="#fff"/>
+      <path d="M17 19h-3v-5c0-.8-.7-1.5-1.5-1.5S11 13.2 11 14v5H8V9h3v1.3c.6-.8 1.6-1.3 2.6-1.3 2 0 3.4 1.5 3.4 3.5V19z" fill="#fff"/>
+    </svg>
+  )
+}
+function XIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#111"/>
+      <path d="M7 7l10 10M17 7L7 17" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  )
+}
+function CSVIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#16A34A"/>
+      <text x="12" y="14" textAnchor="middle" fontSize="7" fontFamily="Arial" fill="#fff">CSV</text>
+    </svg>
+  )
+}
+function SheetsIcon() {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="#10B981"/>
+      <rect x="6" y="6" width="12" height="12" fill="#fff"/>
+      <path d="M6 10h12M6 14h12" stroke="#10B981" strokeWidth="1"/>
     </svg>
   )
 }
