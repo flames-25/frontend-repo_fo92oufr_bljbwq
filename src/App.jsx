@@ -162,28 +162,44 @@ export default function App() {
         </Container>
       </section>
 
-      {/* Benefits */}
+      {/* Benefits split 50/50 with image */}
       <section id="benefits" className="py-20">
         <Container>
-          <SectionTitle eyebrow="Benefits" title="What you get, instantly" />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: ClockIcon, label: 'Save 3–4 days per month' },
-              { icon: Sparkles, label: 'AI insights' },
-              { icon: Layers, label: 'Custom templates' },
-              { icon: Users, label: 'Multi-brand' },
-              { icon: UploadCloud, label: 'Upload your own data' },
-              { icon: Download, label: 'Export instantly' },
-            ].map(({ icon: Icon, label }) => (
-              <div key={label} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-emerald-600/10 grid place-items-center">
-                    <Icon className="h-5 w-5 text-emerald-700" />
-                  </div>
-                  <p className="font-medium text-gray-800">{label}</p>
-                </div>
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
+            <div>
+              <div className="text-left space-y-3">
+                <p className="text-emerald-600 font-semibold tracking-wide">Benefits</p>
+                <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900">What you get, instantly</h2>
+                <p className="text-gray-600 max-w-xl">Automate the busywork and spend time on strategy. These wins land on day one.</p>
               </div>
-            ))}
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {[
+                  { icon: ClockIcon, label: 'Save 3–4 days per month' },
+                  { icon: Sparkles, label: 'AI insights' },
+                  { icon: Layers, label: 'Custom templates' },
+                  { icon: Users, label: 'Multi-brand' },
+                  { icon: UploadCloud, label: 'Upload your own data' },
+                  { icon: Download, label: 'Export instantly' },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-xl bg-emerald-600/10 grid place-items-center">
+                        <Icon className="h-5 w-5 text-emerald-700" />
+                      </div>
+                      <p className="font-medium text-gray-800">{label}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-3 bg-gradient-to-tr from-emerald-100/60 via-white to-emerald-50 rounded-3xl blur-2xl -z-10" />
+              <img
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1600&auto=format&fit=crop"
+                alt="Analytics report preview"
+                className="w-full rounded-2xl border border-gray-200 shadow-sm object-cover"
+              />
+            </div>
           </div>
         </Container>
       </section>
@@ -243,17 +259,15 @@ export default function App() {
         </Container>
       </section>
 
-      {/* Integrations with flat icons */}
+      {/* Integrations with unified green icons and removed YouTube/LinkedIn */}
       <section id="integrations" className="py-20 bg-gray-50">
         <Container>
           <SectionTitle eyebrow="Integrations" title="Plug in your channels and data" />
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
               { label: 'Instagram', icon: IGIcon },
               { label: 'TikTok', icon: TikTokIcon },
               { label: 'Facebook', icon: FBIcon },
-              { label: 'YouTube', icon: YTIcon },
-              { label: 'LinkedIn', icon: INIcon },
               { label: 'X/Twitter', icon: XIcon },
               { label: 'CSV', icon: CSVIcon },
               { label: 'Google Sheets', icon: SheetsIcon },
@@ -407,11 +421,13 @@ function ClockIcon(props) {
   )
 }
 
-// Flat brand-ish icons (minimal, not official logos)
+const GREEN = '#10B981'
+
+// Flat brand-ish icons (now unified green tone)
 function IGIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="3" y="3" width="18" height="18" rx="5" fill="#E1306C"/>
+      <rect x="3" y="3" width="18" height="18" rx="5" fill={GREEN}/>
       <rect x="7.5" y="7.5" width="9" height="9" rx="4.5" fill="white"/>
       <circle cx="17" cy="7" r="1.3" fill="white"/>
     </svg>
@@ -420,7 +436,7 @@ function IGIcon() {
 function TikTokIcon() {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#000"/>
+      <rect width="24" height="24" rx="4" fill={GREEN}/>
       <path d="M14 6c1.2 1.9 2.5 2.7 4 3v2.2c-1.7-.1-3-.7-4-1.5v4.3c0 2.5-2 4.5-4.5 4.5S5 16.5 5 14s2-4.5 4.5-4.5c.5 0 1 .1 1.5.3v2.3c-.4-.2-.9-.3-1.5-.3C7.9 11.8 7 12.8 7 14c0 1.2 1 2.2 2.2 2.2s2.3-1 2.3-2.2V6h2.5z" fill="#fff"/>
     </svg>
   )
@@ -428,33 +444,15 @@ function TikTokIcon() {
 function FBIcon() {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#1877F2"/>
+      <rect width="24" height="24" rx="4" fill={GREEN}/>
       <path d="M13.5 8H15V5h-2c-2 0-3.5 1.6-3.5 3.5V11H7v3h2.5v5H13v-5h2.2l.3-3H13v-1.3c0-.4.3-.7.7-.7h-.2z" fill="#fff"/>
-    </svg>
-  )
-}
-function YTIcon() {
-  return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#FF0000"/>
-      <polygon points="10,8 16,12 10,16" fill="#fff"/>
-    </svg>
-  )
-}
-function INIcon() {
-  return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#0A66C2"/>
-      <rect x="5" y="9" width="3" height="10" fill="#fff"/>
-      <circle cx="6.5" cy="6.5" r="1.5" fill="#fff"/>
-      <path d="M17 19h-3v-5c0-.8-.7-1.5-1.5-1.5S11 13.2 11 14v5H8V9h3v1.3c.6-.8 1.6-1.3 2.6-1.3 2 0 3.4 1.5 3.4 3.5V19z" fill="#fff"/>
     </svg>
   )
 }
 function XIcon() {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#111"/>
+      <rect width="24" height="24" rx="4" fill={GREEN}/>
       <path d="M7 7l10 10M17 7L7 17" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
     </svg>
   )
@@ -462,7 +460,7 @@ function XIcon() {
 function CSVIcon() {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#16A34A"/>
+      <rect width="24" height="24" rx="4" fill={GREEN}/>
       <text x="12" y="14" textAnchor="middle" fontSize="7" fontFamily="Arial" fill="#fff">CSV</text>
     </svg>
   )
@@ -470,9 +468,9 @@ function CSVIcon() {
 function SheetsIcon() {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="#10B981"/>
+      <rect width="24" height="24" rx="4" fill={GREEN}/>
       <rect x="6" y="6" width="12" height="12" fill="#fff"/>
-      <path d="M6 10h12M6 14h12" stroke="#10B981" strokeWidth="1"/>
+      <path d="M8 10h8M8 14h8" stroke={GREEN} strokeWidth="1.5"/>
     </svg>
   )
 }
