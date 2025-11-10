@@ -6,14 +6,14 @@ const Container = ({ children, className = '' }) => (
   <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
 )
 
-const PrimaryButton = ({ children }) => (
-  <a href="#start" className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-3 text-white font-semibold shadow-sm hover:bg-emerald-700 transition-colors">
+const PrimaryButton = ({ children, className = '' }) => (
+  <a href="#start" className={`inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-3 text-white font-semibold shadow-sm hover:bg-emerald-700 transition-colors ${className}`}>
     {children}
   </a>
 )
 
-const SecondaryButton = ({ children }) => (
-  <a href="#demo" className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-3 text-gray-900 font-semibold hover:bg-gray-50 transition-colors">
+const SecondaryButton = ({ children, className = '' }) => (
+  <a href="#demo" className={`inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-3 text-gray-900 font-semibold hover:bg-gray-50 transition-colors ${className}`}>
     {children}
   </a>
 )
@@ -123,17 +123,17 @@ export default function App() {
         </Container>
       </section>
 
-      {/* Solution with background image */}
+      {/* Solution with background image (fixed visibility) */}
       <section id="solution" className="relative py-24">
-        <div className="absolute inset-0 -z-0">
+        <div className="absolute inset-0 -z-10">
           <img
             src="https://images.unsplash.com/photo-1551281044-57544b7e79ae?q=80&w=2000&auto=format&fit=crop"
             alt="Social dashboard background"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-white/80" />
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px]" />
         </div>
-        <Container>
+        <Container className="relative z-10">
           <SectionTitle
             eyebrow="The Solution"
             title="The First Reporting Automation Engine Built for Agencies"
@@ -298,7 +298,7 @@ export default function App() {
       <section id="pricing" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <Container>
           <SectionTitle eyebrow="Pricing" title="Simple plans for every stage" />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 name: 'Starter',
@@ -313,12 +313,6 @@ export default function App() {
                 cta: 'Start Pro',
                 featured: true,
                 badge: 'Popular',
-              },
-              {
-                name: 'Multi‑Brand',
-                desc: 'For agencies managing multiple brands and workspaces.',
-                features: ['Multi‑brand workspace','Roles & permissions','Priority support'],
-                cta: 'Talk to Sales',
               },
               {
                 name: 'Enterprise',
@@ -343,9 +337,9 @@ export default function App() {
                     <li key={f} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-600" /> {f}</li>
                   ))}
                 </ul>
-                <div className="mt-6 flex gap-3">
-                  <PrimaryButton>{cta}</PrimaryButton>
-                  <SecondaryButton>Book Demo</SecondaryButton>
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <PrimaryButton className="w-full">{cta}</PrimaryButton>
+                  <SecondaryButton className="w-full">Book Demo</SecondaryButton>
                 </div>
               </div>
             ))}
